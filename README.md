@@ -8,17 +8,18 @@ node --version
 npm --version
 ```
 
-## Init Svelte
+## Init
 
 ```bash
-npm install -g npm@11.6.2
 npx sv create
-cd svelte
+cd app
 npm install
-npm run dev -- --open
-
 ```
 
-commit base stuff
+## Run
 
-step into the right dir already
+```bash
+cd app
+npm install
+npm run dev -- --open
+```
