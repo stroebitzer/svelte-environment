@@ -1,6 +1,6 @@
 {
   "name": "Svelte Environment",
-  "image": "hub.docker.com/r/ueber/svelte-environment:0.0.1",
+  "image": "ueber/svelte-environment:0.0.1",
   "customizations": {
     "vscode": {
       "settings": {
