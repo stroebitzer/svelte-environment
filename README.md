@@ -14,6 +14,9 @@ npm --version
 npx sv create
 cd app
 npm install
+
+npm install js-yaml
+npm install @types/js-yaml --save-dev
 ```
 
 ## Run

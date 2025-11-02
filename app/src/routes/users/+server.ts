@@ -1,4 +1,12 @@
 import { json } from '@sveltejs/kit';
+import * as fs from 'fs';
+import * as yaml from 'js-yaml';
+import { join } from 'path';
+import { DATA_DIR } from '$env/static/private';
+
+
+
+
 
 interface User {
   id: number;
@@ -7,12 +15,15 @@ interface User {
 }
 
 export function GET() {
-
-  const users: User[] = [
-    { id: 1, name: 'Hubert', email: 'alice@example.com' },
-    { id: 2, name: 'Leon', email: 'bob@example.com' },
-    { id: 3, name: 'Erik', email: 'charlie@example.com' }
-  ];
-
-  return json(users);
+  try {
+    const filePath = join(DATA_DIR, 'users.yaml');
+    console.log('Reading users from ', filePath);
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const users = yaml.load(fileContents) as User[];
+    return json(users);
+  }
+  catch (e) {
+    console.error('Error reading users:', e);
+  }
 }
+

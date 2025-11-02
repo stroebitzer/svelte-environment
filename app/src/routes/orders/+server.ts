@@ -1,4 +1,8 @@
 import { json } from '@sveltejs/kit';
+import * as fs from 'fs';
+import * as yaml from 'js-yaml';
+import { join } from 'path';
+import { DATA_DIR } from '$env/static/private';
 
 interface Order {
   id: number;
@@ -9,15 +13,14 @@ interface Order {
 }
 
 export function GET() {
-
-  const orders: Order[] = [
-    { id: 1, date: '2025-10-26T04:58:33.000Z', userId: 1, item: 'Brotwirschtel', quantity: 7 },
-    { id: 2, date: '2025-10-27T04:58:33.000Z', userId: 1, item: 'Kasnocken', quantity: 8 },
-    { id: 3, date: '2025-10-29T04:58:33.000Z', userId: 1, item: 'Gsöchts', quantity: 9 },
-    { id: 4, date: '2025-10-29T04:58:33.000Z', userId: 2, item: 'Bier', quantity: 10 },
-    { id: 5, date: '2025-10-29T04:58:33.000Z', userId: 3, item: 'Klopapier', quantity: 10 },
-    { id: 6, date: '2025-10-29T04:58:33.000Z', userId: 3, item: 'Lego', quantity: 10 }
-  ];
-
-  return json(orders);
+  try {
+    const filePath = join(DATA_DIR, 'orders.yaml');
+    console.log('Reading orders from ', filePath);
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const orders = yaml.load(fileContents) as Order[];
+    return json(orders);
+  }
+  catch (e) {
+    console.error('Error reading orders:', e);
+  }
 }

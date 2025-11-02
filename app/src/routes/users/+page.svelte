@@ -29,7 +29,7 @@
     <ul>
       {#each users as user (user.id)}
         <li>
-          <strong>{user.name}</strong> ({user.email})
+          <strong>{user.id}</strong> <strong>{user.name}</strong> ({user.email})
         </li>
       {/each}
     </ul>

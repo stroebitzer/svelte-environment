@@ -1,0 +1,9 @@
+- id: 1
+  name: koal
+  email: koal@gmail.com
+- id: 2
+  name: kevin
+  email: kevin@gmail.com
+- id: 3
+  name: geoffrey
+  email: geoffrey@gmail.com
